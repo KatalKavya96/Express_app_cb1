@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-
+const fs = require("fs")
 // Root Route/Deafult Route
 
 app.get("/",(req,res)=>{
@@ -28,6 +28,16 @@ app.get("/prn/:value",(req,res)=>{
 
 })
 
+app.get("/prid/:id",(req,res)=>{
+
+    const fileName = req.params.id
+    fs.readFile(fileName,"utf-8",(err,data)=>{
+
+        if(err){res.status(404).send("Not Found")}
+        else{res.status(200).send(data)}
+    })
+    
+})
 
 
 app.listen(3000,()=>{console.log("Server Started on 3000")})
