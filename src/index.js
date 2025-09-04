@@ -31,7 +31,7 @@ app.get("/prn/:value",(req,res)=>{
 app.get("/prid/:id",(req,res)=>{
 
     const fileName = req.params.id
-    fs.readFile(fileName,"utf-8",(err,data)=>{
+    fs.readFile(`${fileName}.html`,"utf-8",(err,data)=>{
 
         if(err){res.status(404).send("Not Found")}
         else{res.status(200).send(data)}
