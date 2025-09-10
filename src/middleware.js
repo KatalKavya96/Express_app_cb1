@@ -9,13 +9,22 @@ function Logger(req,res,next){
     const method = req.method;
     const url = req.url
     console.log("Timestamp:", timestamp,"Method:", method,"URL:",url)
-    res.send("Hello i have not sent req to handler yet")
     next()
 }
 
+function isAuth(req,res,next){
+
+    if (req.query.password){
+
+        next()
+    }
+    else{
+        res.status(401).send("Not Logged In")
+    }
+}
 // Global Middleware/ Application Level Middleware
 app.use(Logger)
-
+app.use(isAuth)
 
 app.get("/",(req,res)=>{
     res.send("Hey I am Express Server")
