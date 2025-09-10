@@ -9,6 +9,7 @@ function Logger(req,res,next){
     const method = req.method;
     const url = req.url
     console.log("Timestamp:", timestamp,"Method:", method,"URL:",url)
+    res.send("Hello i have not sent req to handler yet")
     next()
 }
 
