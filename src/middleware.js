@@ -22,11 +22,17 @@ function isAuth(req,res,next){
         res.status(401).send("Not Logged In")
     }
 }
+// Route Specific Middleware
+function routeSpecific(req,res,next){
+
+    console.log("This is Route Specific Middleware")
+}
+
 // Global Middleware/ Application Level Middleware
 app.use(Logger)
 app.use(isAuth)
 
-app.get("/",(req,res)=>{
+app.get("/",routeSpecific,(req,res)=>{
     res.send("Hey I am Express Server")
 })
 
